@@ -10,7 +10,12 @@ static const char *TAG = "xiaomi_xmtzc0xhm";
 
 void XiaomiXMTZC0XHM::dump_config() {
   ESP_LOGCONFIG(TAG, "Xiaomi XMTZC0XHM");
-  LOG_SENSOR("  ", "Measured Weight", this->weight_);
+  if (this->weight_ != nullptr)
+    LOG_SENSOR("  ", "Weight", this->weight_);
+  if (this->impedance_ != nullptr)
+    LOG_SENSOR("  ", "Impedance", this->impedance_);
+  if (this->battery_level_ != nullptr)
+    LOG_SENSOR("  ", "Battery Level", this->battery_level_);
 }
 
 bool XiaomiXMTZC0XHM::parse_device(const esp32_ble_tracker::ESPBTDevice &device) {
